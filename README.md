@@ -4,12 +4,12 @@ JQuery function to autocomplete a form input field from an array of data objects
 # Usage
 ````js
 $('input').autocomplete();
-
+````
 or
 
 ````html
 <input type="input" data-jq-autocomplete />
-
+````
 # Settings
 
 Key|Default|Description
