@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>JQuery Autocomplete Demo</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			section:not(.full-width) {
+				width:45%;
+				display:inline-block;
+			}
+			section:nth-child(even):not(.full-width) {
+				float:right;
+			}
+			pre {
+				background-color:#ccc;
+				padding:5px;
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<header>
+				<h1>JS DATA</h1>
+			</header>
+			<input type="text" id="js" />
+			<pre>
+				<code>
+$('#js').autocomplete({
+	data: [
+		{
+			"name": "Ezra Obiwale",
+			"gender": "Male"
+		},
+		{
+			"name": "Jenifa Langley",
+			"gender": "Female"
+		},
+		{
+			"name": "Mathews Eddison",
+			"gender": "Male"
+		}
+	]
+});
+				</code>
+			</pre>
+		</section>
+		<section>
+			<header>
+				<h1>AJAX DATA</h1>
+			</header>
+			<input type="text" id="ajax" />
+			<pre>
+				<code>
+$('#ajax').autocomplete({
+	url: "data.json",
+	siftData: true
+});
+				</code>
+			</pre>
+		</section>
+		<section class="full-width">
+			<header>
+				<h1>AJAX DATA 2 - Data Attributes</h1>
+			</header>
+			<input type="text" data-jq-autocomplete data-url="data.json" data-sift-data="true" />
+			<pre>
+				<code>
+&lt;input type="text" data-jq-autocomplete data-url="data.json" data-sift-data="true" />
+				</code>
+			</pre>
+		</section>
+		<section class="full-width">
+			<header>
+				<h1>AJAX DATA 2 - With Data Key</h1>
+			</header>
+			<input type="text" data-jq-autocomplete="{url:'data-with-key.json', sift_data:true, data_key:'data'}" />
+			<pre>
+				<code>
+&lt;input type="text" data-jq-autocomplete="{url:'data-with-key.json', sift_data:true, data_key:'data'}" />
+				</code>
+			</pre>
+		</section>
+				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+		<script src="jquery-autocomplete.min.js"></script>
+		<script>
+			$('#js').autocomplete({
+				data: [
+					{
+						"name": "Ezra Obiwale",
+						"gender": "Male"
+					},
+					{
+						"name": "Jenifa Langley",
+						"gender": "Female"
+					},
+					{
+						"name": "Mathews Eddison",
+						"gender": "Male"
+					}
+				]
+			});
+			$('#ajax').autocomplete({
+				url: "data.json",
+				siftData: true
+			});
+		</script>
+	</body>
+</html>
