@@ -22,9 +22,9 @@ delay|300|Time in millisecond before autocomplete kicks in
 method|get|Request method for ajax request. Url must be set
 data_key|empty string|Key in the response object containing the data array
 sift_data|false|Set to `true` if to check data against input string
-beforeListing|function|Function to call before data is loaded
-list|function|Function to load each received data
-afterListing|function|function to call after data is loaded
+beforeListing|function|Function to call before data is loaded. Parameters are `ul`, and data array where the `this` object is the input element
+list|function|Function to load each received data. Parameters are `li` and the data for the row where the `this` object is the input element.
+afterListing|function|function to call after data is loaded. Parameters are `ul` and data array where the `this` object is the input element.
 
 # Demo
 Check the contained demo.html
