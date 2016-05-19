@@ -7,8 +7,10 @@ There are basically two ways to call the autocomplete on the input field
 
 -	**With Javascript**
 ````html
-<input type="text" id="with-js" /><!-- settings are in js -->
-<input type="text" id="with-default-js" data-sift-data="true" /><!-- called via js but settings in data object -->
+<!-- settings are in js -->
+<input type="text" id="with-js" />
+<!-- called via js but settings in data object -->
+<input type="text" id="with-default-js" data-sift-data="true" />
 <script>
 	var settings = {};
 	$('input.with-js').autocomplete(settings);
@@ -17,9 +19,12 @@ There are basically two ways to call the autocomplete on the input field
 ````
 -	**Without Javascript**
 ````html
-<input type="text" data-jq-autocomplete /><!-- default settings -->
-<input type="text" data-jq-autocomplete="{sift_data:true}" /><!-- custom settings in object -->
-<input type="text" data-jq-autocomplete data-sift-data="true" /><!-- custom settings with data object -->
+<!-- default settings -->
+<input type="text" data-jq-autocomplete />
+<!-- custom settings in object -->
+<input type="text" data-jq-autocomplete="{sift_data:true}" />
+<!-- custom settings with data object -->
+<input type="text" data-jq-autocomplete data-sift-data="true" />
 ````
 
 # Settings
