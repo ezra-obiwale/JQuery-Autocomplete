@@ -80,12 +80,12 @@
 				clearTimeout(to[$(this).data('aci')]);
 				to[$(this).data('aci')] = setTimeout(function () {
 					var timeout = $(this).data('minChars') || _config.min_chars || 3;
-					if (!$(this).val() || $(this).val().length < timeout) {
-						$(this).siblings('ul.completing-list').html('');
+					var $input = $(this),
+							$ul = $input.closest('.auto-completing').find('ul.completing-list');
+					if (!$input.val() || $input.val().length < timeout) {
+						$ul.html('');
 						return;
 					}
-					var $input = $(this),
-							$ul = $input.siblings('ul.completing-list');
 					if (_config.data.length) {
 						$.loadAutocompleteData($input, $ul, _config);
 					} else if (_config.url.length || $input.data('url')) {
