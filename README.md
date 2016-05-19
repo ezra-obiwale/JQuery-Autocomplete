@@ -5,7 +5,7 @@ JQuery function to autocomplete a form input field from an array of data objects
 
 There are basically two ways to call the autocomplete on the input field
 
-1	**With Javascript**
+-	**With Javascript**
 ````html
 <input type="text" id="with-js" /><!-- settings are in js -->
 <input type="text" id="with-default-js" data-sift-data="true" /><!-- called via js but settings in data object -->
@@ -15,7 +15,7 @@ There are basically two ways to call the autocomplete on the input field
 	$('input.with-default-js').autocomplete();
 </script>
 ````
-2.	**Without Javascript**
+-	**Without Javascript**
 ````html
 <input type="text" data-jq-autocomplete /><!-- default settings -->
 <input type="text" data-jq-autocomplete="{sift_data:true}" /><!-- custom settings in object -->
