@@ -4,6 +4,7 @@ JQuery function to autocomplete a form input field from an array of data objects
 # Usage
 
 There are basically two ways to call the autocomplete on the input field
+
 1.	**With Javascript**
 ````html
 <input type="text" id="with-js" /><!-- settings are in js -->
