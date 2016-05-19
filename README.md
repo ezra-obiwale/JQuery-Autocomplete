@@ -2,29 +2,40 @@
 JQuery function to autocomplete a form input field from an array of data objects which can be set in the javascript or gotten via a url
 
 # Usage
-````js
-$('input').autocomplete();
-````
-or
 
+There are basically two ways to call the autocomplete on the input field
+1.	**With Javascript**
 ````html
-<input type="input" data-jq-autocomplete />
+<input type="text" id="with-js" /><!-- settings are in js -->
+<input type="text" id="with-default-js" data-sift-data="true" /><!-- called via js but settings in data object -->
+<script>
+	var settings = {};
+	$('input.with-js').autocomplete(settings);
+	$('input.with-default-js').autocomplete();
+</script>
 ````
+2. **Without Javascript**
+````html
+<input type="text" data-jq-autocomplete /><!-- default settings -->
+<input type="text" data-jq-autocomplete="{sift_data:true}" /><!-- custom settings in object -->
+<input type="text" data-jq-autocomplete data-sift-data="true" /><!-- custom settings with data object -->
+````
+
 # Settings
 
 Key|Default|Description
 ---|-------|-----------
+afterListing|function|function to call after data is loaded. Parameters are `ul` and data array where the `this` object is the input element.
+beforeListing|function|Function to call before data is loaded. Parameters are `ul`, and data array where the `this` object is the input element
+data|empty array|Array of data to autocomplete from
+data_key|empty string|Key in the response object containing the data array
+delay|300|Time in millisecond before autocomplete kicks in
+list|function|Function to load each received data. Parameters are `li` and the data for the row where the `this` object is the input element.
+method|get|Request method for ajax request. Url must be set
+min_chars|3|Minimum characters before autocomplete kicks in
+sift_data|false|Set to `true` if to check data against input string
 url|empty string|Path from which to access the data
 ul_class|empty string|The class to add to the ul of the displayed list
-data|empty array|Array of data to autocomplete from
-min_chars|3|Minimum characters before autocomplete kicks in
-delay|300|Time in millisecond before autocomplete kicks in
-method|get|Request method for ajax request. Url must be set
-data_key|empty string|Key in the response object containing the data array
-sift_data|false|Set to `true` if to check data against input string
-beforeListing|function|Function to call before data is loaded. Parameters are `ul`, and data array where the `this` object is the input element
-list|function|Function to load each received data. Parameters are `li` and the data for the row where the `this` object is the input element.
-afterListing|function|function to call after data is loaded. Parameters are `ul` and data array where the `this` object is the input element.
 
 # Demo
 Check the contained demo.html
