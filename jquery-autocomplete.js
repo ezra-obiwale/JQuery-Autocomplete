@@ -10,8 +10,8 @@
 	};
 	$.checkAutocompleteData = function (input, data) {
 		var isAllowed = false;
-		$.each(data, function () {
-			if (this.toLowerCase().indexOf($(input).val().toLowerCase()) !== -1) {
+		$.each(data, function (i, v) {
+			if (v && v.toLowerCase().indexOf($(input).val().toLowerCase()) !== -1) {
 				isAllowed = true;
 				return false;
 			}
@@ -20,14 +20,22 @@
 	};
 	$.loadAutocompleteData = function (input, ul, config, data) {
 		var before = $(input).data('beforeListing') ?
-				window[$(input).data('beforeListing')] :
+				$(input).data('beforeListing') :
 				config.beforeListing,
 				list = $(input).data('list') ?
-				window[$(input).data('list')] :
+				$(input).data('list') :
 				config.list
 				, after = $(input).data('afterListing') ?
-				window[$(input).data('afterListing')] :
+				$(input).data('afterListing') :
 				config.afterListing;
+
+		if (typeof before === 'string' && window[before])
+			before = window[before];
+		if (typeof list === 'string' && window[list])
+			list = window[list];
+		if (typeof after === 'string' && window[after])
+			after = window[after];
+		
 		if (typeof before === 'function')
 			before.call($(input), $(ul), data);
 		var check = $(input).data('siftData') || config.sift_data || false;
@@ -90,8 +98,13 @@
 						$.loadAutocompleteData($input, $ul, _config);
 					} else if (_config.url.length || $input.data('url')) {
 						$[$input.data('method') || _config.method]($input.data('url') || _config.url, {query: $(this).val().trim()}, function (resp) {
-							var dataKey = $input.data('dataKey') || _config.data_key;
-							$.loadAutocompleteData($input, $ul, _config, dataKey ? resp[dataKey] : resp);
+							var dataKey = $input.data('dataKey') || _config.data_key,
+									data = dataKey ? resp[dataKey] : resp,
+									check = $input.data('siftData') || _config.sift_data || false;
+							if (check) {
+								_config.data = data;
+							}
+							$.loadAutocompleteData($input, $ul, _config, data);
 						}, 'json');
 					}
 				}.bind(this), _config.delay);
