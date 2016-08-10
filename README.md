@@ -39,7 +39,8 @@ delay|300|Time in millisecond before autocomplete kicks in
 list|function|Function to load each received data. Parameters are `li` and the data for the row where the `this` object is the input element.
 method|get|Request method for ajax request. Url must be set
 min_chars|3|Minimum characters before autocomplete kicks in
-sift_data|false|Set to `true` if to check data against input string
+request_data|`{}`|Data to send with the request. Useful especially if method is `POST`
+sift_data|`false`|Set to `true` if to check data against input string
 url|empty string|Path from which to access the data
 ul_class|empty string|The class to add to the ul of the displayed list
 

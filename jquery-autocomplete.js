@@ -35,7 +35,7 @@
 			list = window[list];
 		if (typeof after === 'string' && window[after])
 			after = window[after];
-		
+
 		if (typeof before === 'function')
 			before.call($(input), $(ul), data);
 		var check = $(input).data('siftData') || config.sift_data || false;
@@ -60,6 +60,7 @@
 			min_chars: 3,
 			delay: 300,
 			method: 'get',
+			request_data: {},
 			data_key: '',
 			sift_data: false,
 			beforeListing: function (ul, resp) {
@@ -94,10 +95,22 @@
 						$ul.html('');
 						return;
 					}
-					if (_config.data.length) {
+					var request_data = $input.data('requestData') ? $input.data('requestData')
+							: _config.request_data;
+					if (_config.data.length && _config.lastRequestData == request_data) {
 						$.loadAutocompleteData($input, $ul, _config);
 					} else if (_config.url.length || $input.data('url')) {
-						$[$input.data('method') || _config.method]($input.data('url') || _config.url, {query: $(this).val().trim()}, function (resp) {
+						_config.lastRequestData = request_data;
+						if (typeof request_data == 'string') {
+							request_data += '&query=' + $(this).val().trim();
+						}
+						else if (typeof request_data == 'object') {
+							request_data.query = $(this).val().trim();
+						}
+						else {
+							request_data = $(this).val().trim();
+						}
+						$[$input.data('method') || _config.method]($input.data('url') || _config.url, request_data, function (resp) {
 							var dataKey = $input.data('dataKey') || _config.data_key,
 									data = dataKey ? resp[dataKey] : resp,
 									check = $input.data('siftData') || _config.sift_data || false;
