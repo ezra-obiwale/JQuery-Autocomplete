@@ -119,7 +119,9 @@
 								_config.data = data;
 							}
 							$.loadAutocompleteData($input, $ul, _config, data);
-						}, 'json');
+						}, 'json').fail(function (e) {
+							console.error(e.responseText);
+						});
 					}
 				}.bind(this), _config.delay);
 			}).wrap('<div/>').parent().addClass('auto-completing').append('<ul class="completing-list ' + ($(this).data('ulClass') || _config.ul_class) + '"/>');
